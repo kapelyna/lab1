@@ -20,17 +20,22 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.test.ui.theme.TestTheme
 
 
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    lateinit private var viewModel: MainViewModel
+            override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
         setContent {
             TestTheme {
-                MainScreen(viewModel = MainViewModel())
+                MainScreen(viewModel = viewModel)
             }
         }
     }
